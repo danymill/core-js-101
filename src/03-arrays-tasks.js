@@ -236,15 +236,23 @@ function toArrayOfSquares(arr) {
  *   [ 0, 0, 0, 0, 0]         => [ 0, 0, 0, 0, 0]
  *   [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ] => [ 1, 3, 6, 10, 15, 21, 28, 36, 45, 55 ]
  */
-function getMovingSum(/* arr */) {
-  throw new Error('Not implemented');
-  // let sum = 0;
-  // arr1 = [];
-  // arr.map((el, index) => {
-  //   sum += (el[index - 1] || 0) + el[index];
-  //   arr1.push(sum)
-  // });
-  // return arr1;
+function getMovingSum(arr) {
+  const array = [];
+  const movingSum = (item, index) => {
+    if (index === 0) {
+      array.push(item);
+      return item;
+    }
+    if (item < 0) {
+      array.push(0);
+      return 0;
+    }
+    const res = item + array[index - 1];
+    array.push(res);
+    return item + array[index - 1];
+  };
+
+  return arr.map(movingSum);
 }
 
 /**
