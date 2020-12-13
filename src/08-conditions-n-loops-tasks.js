@@ -222,11 +222,11 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
 
   if (a > b) {
     return `${startInterval(isStartIncluded)}${b}, ${a}${endInterval(
-      isEndIncluded
+      isEndIncluded,
     )}`;
   }
   return `${startInterval(isStartIncluded)}${a}, ${b}${endInterval(
-    isEndIncluded
+    isEndIncluded,
   )}`;
 }
 
