@@ -93,13 +93,12 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
-  // const arr = [a, b, c].sort();
-  // if (arr[2] < arr[1] + arr[0]) {
-  //   return true;
-  // }
-  // return false;
+function isTriangle(...args) {
+  const arr = args.sort();
+  if (arr[2] < arr[1] + arr[0]) {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -223,11 +222,11 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
 
   if (a > b) {
     return `${startInterval(isStartIncluded)}${b}, ${a}${endInterval(
-      isEndIncluded,
+      isEndIncluded
     )}`;
   }
   return `${startInterval(isStartIncluded)}${a}, ${b}${endInterval(
-    isEndIncluded,
+    isEndIncluded
   )}`;
 }
 
@@ -270,6 +269,7 @@ function reverseInteger(num) {
     reverseNumber += stringNumber[i];
   }
   return +reverseNumber;
+
   // const number = num.toString().split('').reverse().join('');
   // return +number;
 }

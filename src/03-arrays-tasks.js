@@ -144,11 +144,8 @@ function getStringsLength(arr) {
  *    [ 1, 3, 4, 5 ], 2, 1  => [ 1, 2, 3, 4, 5 ]
  *    [ 1, 'b', 'c'], 0, 'x'  => [ 'x', 1, 'b', 'c' ]
  */
-function insertItem(/* arr, item, index */) {
-  // const restArr = arr.splice(0, index);
-  // arr.unshift(item);
-  // return [...restArr, ...arr];
-  throw new Error('Not implemented');
+function insertItem(arr, item, index) {
+  return arr.splice(index, 0, item);
 }
 
 /**
@@ -199,12 +196,17 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  // return arr.reduce(
-  //   (acc, array) => (acc += `${array.join(',')} + \n`),
-  //   arr[0][0]
-  // );
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  const csvText = (currArr, index) => {
+    let str = '';
+    if (index === arr.length - 1) {
+      str += `${currArr.join(',')}`;
+    } else {
+      str += `${currArr.join(',')}\n`;
+    }
+    return str;
+  };
+  return arr.map(csvText).join('');
 }
 
 /**
@@ -481,14 +483,16 @@ function sortCitiesArray(arr) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
-  // return Array(n)
-  //   .fill()
-  //   .map((el, index) =>
-  //     Array(n)
-  //       .fill(1, index, index + 1)
-  //   );
+function getIdentityMatrix(n) {
+  const arr = Array(n).fill(Array(n).fill(0));
+  // 2 [[0, 0], [0, 0]] -> enter first subarray ->
+  // 0 === 0 -> [1, 0] -> 1 === 1 -> [0, 1] -> [[1, 0], [0, 1]]
+  return arr.map((el, index1) => el.map((item, index2) => {
+    if (index1 === index2) {
+      return 1;
+    }
+    return item;
+  }));
 }
 /**
  * Creates an array of integers from the specified start to end (inclusive)
@@ -503,8 +507,13 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  const arr = new Array(end - start + 1).fill(start);
+  return arr.map((el, index) => {
+    let element = el;
+    element += index;
+    return element;
+  });
 }
 
 /**
@@ -585,8 +594,10 @@ function selectMany(arr, childrenSelector) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  let array = arr;
+  array = arr.flat(indexes.length);
+  return array[indexes[indexes.length - 1]];
 }
 
 /**
