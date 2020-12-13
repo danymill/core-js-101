@@ -49,9 +49,9 @@ function getCicleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(/* value1, value2 */) {
-  throw new Error('Not implemented');
-  // return Math.floor(parseFloat(value1 + value2) / 2);
+function getAverage(value1, value2) {
+  // eslint-disable-next-line no-undef
+  return (BigInt(value1) + BigInt(value2)) / BigInt(2);
 }
 
 /**
@@ -109,18 +109,15 @@ function getLinearEquationRoot(a, b) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  // const productOfTwoCoordinatesX = x1 * x2;
-  // const productOfTwoCoordinatesY = y1 * y2;
-  // const powOfTwoCoordinateX1 = x1 ** x1;
-  // const powOfTwoCoordinateX2 = x2 ** x2;
-  // const powOfTwoCoordinateY1 = y1 ** y1;
-  // const powOfTwoCoordinateY2 = y2 ** y2;
-  // const cosine = ((productOfTwoCoordinatesX + productOfTwoCoordinatesY)
-  //     / Math.sqrt(powOfTwoCoordinateX1 + powOfTwoCoordinateY1))
-  //   * Math.sqrt(powOfTwoCoordinateX2 + powOfTwoCoordinateY2);
-  // return cosine;
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const powX1 = x1 ** x1;
+  const powX2 = x2 ** x2;
+  const powY1 = y1 ** y1;
+  const powY2 = y2 ** y2;
+  const numerator = x1 * x2 + y1 * y2;
+  const denominator = Math.sqrt(powX1 + powY1) * Math.sqrt(powX2 + powY2);
+
+  return Math.acos(numerator, denominator);
 }
 
 /**
